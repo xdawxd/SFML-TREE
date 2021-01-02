@@ -1,12 +1,45 @@
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
+#include "SFML/Graphics/Color.hpp"
 
+using namespace sf;
+
+int width = 800, height = 600;
+
+struct Scene
+{
+    sf::RectangleShape trunk;
+};
+
+Scene createScene()
+{
+    Scene rv;
+
+    rv.trunk.setSize(sf::Vector2f(60, 50));
+    rv.trunk.setFillColor(sf::Color(101, 67, 33));
+    rv.trunk.setRotation(90.f);
+
+    rv.trunk.setPosition(width/2, height-60);
+
+    return rv;
+}
+
+void drawScene(sf::RenderWindow& win, const Scene& scene)
+{
+    win.draw(scene.trunk);
+}
+/*
+void updateScene(Scene& scene)
+{
+    
+}
+*/
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    RenderWindow window(sf::VideoMode(width, height),"Merry Christmas!");
+    
+    Scene sc = createScene();
 
-    while (window.isOpen())
+    while(window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
@@ -15,8 +48,12 @@ int main()
                 window.close();
         }
 
+        //updateScene(sc);
+
         window.clear();
-        window.draw(shape);
+
+        drawScene(window, sc);
+
         window.display();
     }
 
