@@ -32,5 +32,8 @@
     <ClInclude Include="Stars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="starShine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

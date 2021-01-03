@@ -4,7 +4,7 @@
 
 using namespace sf;
 
-auto createChristmasTreeStar(float trunkCenter, float christmasTreeTip)
+ConvexShape createChristmasTreeStar(float trunkCenter=0, float christmasTreeTip=0)
 {
     ConvexShape christmasTreeStar;
 
