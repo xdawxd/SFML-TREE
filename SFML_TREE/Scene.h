@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "christmasTree.h"
 #include "Stars.h"
+#include "starShine.h"
 
 struct Scene
 {
@@ -18,6 +19,8 @@ struct Scene
 
     ConvexShape christmasTree;
     ConvexShape christmasTreeStar;
+
+    ConvexShape starShine;
 };
 
 Scene createScene(int width, int height)
@@ -26,7 +29,7 @@ Scene createScene(int width, int height)
 
     //------------------------- BACKGROUND -----------------------------//
 
-    rv.background.setFillColor(Color(47, 41, 99));
+    rv.background.setFillColor(Color(28, 22, 36)); //47, 41, 99
     rv.background.setSize(Vector2f((float)width, (float)height));
 
     //------------------------- GROUND MODEL -----------------------------//
@@ -61,7 +64,11 @@ Scene createScene(int width, int height)
     rv.bark3.setFillColor(Color(32, 24, 11)); // darkBrown
     rv.bark3.setPosition(trunkCenter - 6.25f, trunkHeight);
 
+    //------------------------- CHRISTMAS TREE MODEL -----------------------------//
+
     rv.christmasTree = createChrismasTree(trunkCenter, trunkHeight, &rv.christmasTreeStar);
+
+    rv.starShine = starShine();
 
     return rv;
 }
@@ -90,6 +97,8 @@ void drawScene(RenderWindow& win, const Scene& scene)
 
     win.draw(scene.christmasTree);
     win.draw(scene.christmasTreeStar);
+
+    win.draw(scene.starShine);
 }
 /*
 void updateScene(Scene& scene)
