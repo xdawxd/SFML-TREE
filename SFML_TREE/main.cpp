@@ -89,16 +89,18 @@ Scene createScene(int width, int height)
     float starW = trunkCenter-12.0f;
     float starH = christmasTreeTip+14.0f;
 
-    rv.star.setPoint(0, Vector2f(starW, starH));
-    rv.star.setPoint(1, Vector2f(starW +5.0f, starH -14.0f)); //    +2.5 |----| -7.0
-    rv.star.setPoint(2, Vector2f(starW -8.0f, starH -23.0f)); //    -4.0 |----| -11.5
-    rv.star.setPoint(3, Vector2f(starW +8.0f, starH -23.0f)); //    +4.0 |----| -11.5
-    rv.star.setPoint(4, Vector2f(starW +12.0f, starH -37.0f)); //   +6.0 |----| -18.5
-    rv.star.setPoint(5, Vector2f(starW +17.0f, starH -23.0f)); //   +8.5 |----| -11.5
-    rv.star.setPoint(6, Vector2f(starW +32.0f, starH -23.0f)); //  +16.0 |----| -11.5
-    rv.star.setPoint(7, Vector2f(starW +20.0f, starH -14.0f)); //  +10.0 |----| -7.0
-    rv.star.setPoint(8, Vector2f(starW +24.0f, starH)); //         +12.0 |----| nothing
-    rv.star.setPoint(9, Vector2f(starW +12.0f, starH -7.0f)); //    +6.0 |----| -3.5
+    rv.star.setPosition(Vector2f(starW, starH));
+
+    rv.star.setPoint(0, Vector2f(0, 0));
+    rv.star.setPoint(1, Vector2f(+5.0f, -14.0f)); //    +2.5 |----| -7.0
+    rv.star.setPoint(2, Vector2f(-8.0f, -23.0f)); //    -4.0 |----| -11.5
+    rv.star.setPoint(3, Vector2f(+8.0f, -23.0f)); //    +4.0 |----| -11.5
+    rv.star.setPoint(4, Vector2f(+12.0f, -37.0f)); //   +6.0 |----| -18.5
+    rv.star.setPoint(5, Vector2f(+17.0f, -23.0f)); //   +8.5 |----| -11.5
+    rv.star.setPoint(6, Vector2f(+32.0f, -23.0f)); //  +16.0 |----| -11.5
+    rv.star.setPoint(7, Vector2f(+20.0f, -14.0f)); //  +10.0 |----| -7.0
+    rv.star.setPoint(8, Vector2f(+24.0f, 0)); //         +12.0 |----| nothing
+    rv.star.setPoint(9, Vector2f(+12.0f, -7.0f)); //    +6.0 |----| -3.5
 
     return rv;
 }
@@ -134,7 +136,7 @@ int main()
 
         //updateScene(sc);
         
-        window.clear(Color(47, 41, 99));
+        window.clear(Color(101, 114, 135));
 
         drawScene(window, sc);
 
