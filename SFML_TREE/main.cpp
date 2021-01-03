@@ -84,7 +84,6 @@ Scene createScene(int width, int height)
 
     rv.star.setPointCount(10);
     rv.star.setFillColor(Color().Yellow);
-    //rv.star.setOrigin(Vector2f(trunkCenter, christmasTreeTip));
 
     float starW = trunkCenter - 12.0f;
     float starH = christmasTreeTip + 14.0f;
@@ -99,7 +98,7 @@ Scene createScene(int width, int height)
     rv.star.setPoint(5, Vector2f(+17.0f, -23.0f)); //   +8.5 |----| -11.5
     rv.star.setPoint(6, Vector2f(+32.0f, -23.0f)); //  +16.0 |----| -11.5
     rv.star.setPoint(7, Vector2f(+20.0f, -14.0f)); //  +10.0 |----| -7.0
-    rv.star.setPoint(8, Vector2f(+24.0f, 0)); //         +12.0 |----| nothing
+    rv.star.setPoint(8, Vector2f(+24.0f, 0)); //       +12.0 |----| nothing
     rv.star.setPoint(9, Vector2f(+12.0f, -7.0f)); //    +6.0 |----| -3.5
 
     return rv;
