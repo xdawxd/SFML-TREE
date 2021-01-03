@@ -19,7 +19,7 @@ Scene createScene(int width, int height)
 
     rv.ground.setSize(Vector2f((float)width, 20.f));
     rv.ground.setFillColor(Color(102, 89, 71));
-    rv.ground.setPosition(0, (float)height-20.f);
+    rv.ground.setPosition(0, (float)height - 20.f);
 
     //------------------------- TRUNK MODEL -----------------------------//
 
@@ -28,13 +28,13 @@ Scene createScene(int width, int height)
 
     rv.trunk.setSize(Vector2f(50, 60));
     rv.trunk.setFillColor(Color(71, 54, 24));
-    rv.trunk.setPosition(trunkCenter-25, trunkHeight);
+    rv.trunk.setPosition(trunkCenter - 25, trunkHeight);
 
     //------------------------- CHRISTMAS TREE MODEL -----------------------------//
 
     rv.christmasTree.setPointCount(19);
     rv.christmasTree.setFillColor(Color(36, 92, 36));
-    
+
     double treeDiv = 200;
     double treeDec = 235;
 
@@ -85,8 +85,8 @@ Scene createScene(int width, int height)
     rv.star.setPointCount(10);
     rv.star.setFillColor(Color().Yellow);
 
-    float starW = trunkCenter-12.0f;
-    float starH = christmasTreeTip+14.0f;
+    float starW = trunkCenter - 12.0f;
+    float starH = christmasTreeTip + 14.0f;
 
     rv.star.setPosition(Vector2f(starW, starH));
 
@@ -114,17 +114,16 @@ void drawScene(RenderWindow& win, const Scene& scene)
 /*
 void updateScene(Scene& scene)
 {
-
 }
 */
 int main()
 {
-    RenderWindow window(VideoMode(800, 600),"Merry Christmas!");
+    RenderWindow window(VideoMode(800, 600), "Merry Christmas!");
     window.setFramerateLimit(60);
 
     Scene sc = createScene(window.getSize().x, window.getSize().y);
 
-    while(window.isOpen())
+    while (window.isOpen())
     {
         Event event;
         while (window.pollEvent(event))
@@ -134,7 +133,7 @@ int main()
         }
 
         //updateScene(sc);
-        
+
         window.clear(Color(101, 114, 135));
 
         drawScene(window, sc);
