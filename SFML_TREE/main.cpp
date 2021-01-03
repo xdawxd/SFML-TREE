@@ -1,18 +1,27 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 #include <iostream>
 
 using namespace sf;
 
 struct Scene
 {
+    RectangleShape ground;
     RectangleShape trunk;
     ConvexShape christmasTree;
+    ConvexShape star;
 };
 
 Scene createScene(int width, int height)
 {
     Scene rv;
+
+    //------------------------- GROUND MODEL -----------------------------//
+
+    rv.ground.setSize(Vector2f((float)width, 20.f));
+    rv.ground.setFillColor(Color(102, 89, 71));
+    rv.ground.setPosition(0, (float)height-20.f);
+
+    //------------------------- TRUNK MODEL -----------------------------//
 
     float trunkCenter = (float)width / 2;
     float trunkHeight = (float)height - 60;
@@ -21,7 +30,7 @@ Scene createScene(int width, int height)
     rv.trunk.setFillColor(Color(71, 54, 24)); // 101, 67, 33
     rv.trunk.setPosition(trunkCenter-25, trunkHeight);
 
-    //-------------------------CHRISTMAS TREE MODEL-----------------------------//
+    //------------------------- CHRISTMAS TREE MODEL -----------------------------//
 
     rv.christmasTree.setPointCount(19);
     rv.christmasTree.setFillColor(Color(36, 92, 36));
@@ -32,13 +41,16 @@ Scene createScene(int width, int height)
     float verticalSpread = 60;
     float currentHeight = trunkHeight;
 
-    for (int i = 0; i < 19; i++)
+    float christmasTreeTip = 0;
+
+    for (int i = 0; i < rv.christmasTree.getPointCount(); i++)
     {
         if (i <= 9)
         {
             if (i == 9)
             {
                 rv.christmasTree.setPoint(i, Vector2f(trunkCenter, currentHeight - verticalSpread));
+                christmasTreeTip = currentHeight - verticalSpread;
             }
             else if (i % 2 != 0)
             {
@@ -68,18 +80,40 @@ Scene createScene(int width, int height)
         }
     }
 
+    //------------------------- STAR MODEL -----------------------------//
+
+    rv.star.setPointCount(10);
+    rv.star.setFillColor(Color().Yellow);
+    //rv.star.setOrigin(Vector2f(trunkCenter, christmasTreeTip));
+
+    float starW = trunkCenter-12.0f;
+    float starH = christmasTreeTip+14.0f;
+
+    rv.star.setPoint(0, Vector2f(starW, starH));
+    rv.star.setPoint(1, Vector2f(starW +5.0f, starH -14.0f)); //    +2.5 |----| -7.0
+    rv.star.setPoint(2, Vector2f(starW -8.0f, starH -23.0f)); //    -4.0 |----| -11.5
+    rv.star.setPoint(3, Vector2f(starW +8.0f, starH -23.0f)); //    +4.0 |----| -11.5
+    rv.star.setPoint(4, Vector2f(starW +12.0f, starH -37.0f)); //   +6.0 |----| -18.5
+    rv.star.setPoint(5, Vector2f(starW +17.0f, starH -23.0f)); //   +8.5 |----| -11.5
+    rv.star.setPoint(6, Vector2f(starW +32.0f, starH -23.0f)); //  +16.0 |----| -11.5
+    rv.star.setPoint(7, Vector2f(starW +20.0f, starH -14.0f)); //  +10.0 |----| -7.0
+    rv.star.setPoint(8, Vector2f(starW +24.0f, starH)); //         +12.0 |----| nothing
+    rv.star.setPoint(9, Vector2f(starW +12.0f, starH -7.0f)); //    +6.0 |----| -3.5
+
     return rv;
 }
 
 void drawScene(RenderWindow& win, const Scene& scene)
 {
+    win.draw(scene.ground);
     win.draw(scene.trunk);
     win.draw(scene.christmasTree);
+    win.draw(scene.star);
 }
 /*
 void updateScene(Scene& scene)
 {
-    scene.trunk.move(0.f, -0.9f);
+
 }
 */
 int main()
@@ -100,7 +134,7 @@ int main()
 
         //updateScene(sc);
         
-        window.clear();
+        window.clear(Color(47, 41, 99));
 
         drawScene(window, sc);
 
