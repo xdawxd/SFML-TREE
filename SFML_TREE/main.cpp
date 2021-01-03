@@ -27,7 +27,7 @@ Scene createScene(int width, int height)
     float trunkHeight = (float)height - 60;
 
     rv.trunk.setSize(Vector2f(50, 60));
-    rv.trunk.setFillColor(Color(71, 54, 24)); // 101, 67, 33
+    rv.trunk.setFillColor(Color(71, 54, 24));
     rv.trunk.setPosition(trunkCenter - 25, trunkHeight);
 
     //------------------------- CHRISTMAS TREE MODEL -----------------------------//
