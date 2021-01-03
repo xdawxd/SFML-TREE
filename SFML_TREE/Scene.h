@@ -3,7 +3,6 @@
 #include <vector>
 #include "SFML/Graphics.hpp"
 #include "christmasTree.h"
-#include "christmasTreeStar.h"
 #include "Stars.h"
 
 struct Scene
@@ -62,94 +61,7 @@ Scene createScene(int width, int height)
     rv.bark3.setFillColor(Color(32, 24, 11)); // darkBrown
     rv.bark3.setPosition(trunkCenter - 6.25f, trunkHeight);
 
-    //------------------------- CHRISTMAS TREE MODEL -----------------------------//
-
-    rv.christmasTree.setPointCount(19);
-    rv.christmasTree.setFillColor(Color(36, 92, 36));
-
-    double treeDiv = 200;
-    double treeDec = 235;
-
-    float verticalSpread = 60;
-    float currentHeight = trunkHeight;
-
-    float christmasTreeTip = 0;
-
-    for (int i = 0; i < rv.christmasTree.getPointCount(); i++)
-    {
-        if (i <= 9)
-        {
-            if (i == 9)
-            {
-                rv.christmasTree.setPoint(i, Vector2f(trunkCenter, currentHeight - verticalSpread));
-                christmasTreeTip = currentHeight - verticalSpread;
-            }
-            else if (i % 2 != 0)
-            {
-                currentHeight = currentHeight - verticalSpread;
-                treeDiv = treeDiv / 1.49;
-                rv.christmasTree.setPoint(i, Vector2f(trunkCenter - (float)treeDiv, currentHeight));
-            }
-            else if (i % 2 == 0)
-            {
-                treeDec = treeDec - 35;
-                rv.christmasTree.setPoint(i, Vector2f(trunkCenter - (float)treeDec, currentHeight));
-            }
-        }
-        else if (i > 9)
-        {
-            if (i % 2 != 0)
-            {
-                rv.christmasTree.setPoint(i, Vector2f(trunkCenter + (float)treeDiv, currentHeight));
-                currentHeight = currentHeight + verticalSpread;
-                treeDiv = treeDiv * 1.49;
-            }
-            else if (i % 2 == 0)
-            {
-                rv.christmasTree.setPoint(i, Vector2f(trunkCenter + (float)treeDec, currentHeight));
-                treeDec = treeDec + 35;
-            }
-        }
-    }
-
-    //------------------------- STAR MODEL -----------------------------//
-
-    rv.christmasTreeStar.setPointCount(10);
-    rv.christmasTreeStar.setFillColor(Color().Yellow);
-
-    float starW = trunkCenter - 12.0f;
-    float starH = christmasTreeTip + 14.0f;
-
-    rv.christmasTreeStar.setPosition(Vector2f(starW, starH));
-
-    rv.christmasTreeStar.setPoint(0, Vector2f(0.f, 0.f));
-    rv.christmasTreeStar.setPoint(1, Vector2f(+5.0f, -14.0f));
-    rv.christmasTreeStar.setPoint(2, Vector2f(-8.0f, -23.0f));
-    rv.christmasTreeStar.setPoint(3, Vector2f(+8.0f, -23.0f));
-    rv.christmasTreeStar.setPoint(4, Vector2f(+12.0f, -37.0f));
-    rv.christmasTreeStar.setPoint(5, Vector2f(+17.0f, -23.0f));
-    rv.christmasTreeStar.setPoint(6, Vector2f(+32.0f, -23.0f));
-    rv.christmasTreeStar.setPoint(7, Vector2f(+20.0f, -14.0f));
-    rv.christmasTreeStar.setPoint(8, Vector2f(+24.0f, 0.f));
-    rv.christmasTreeStar.setPoint(9, Vector2f(+12.0f, -7.0f));
-
-    //------------------------- STARS MODELS -----------------------------//
-    /*
-    rv.star.setPointCount(12);
-
-    rv.star.setPoint(0, Vector2f(0.f, 0.f));
-    rv.star.setPoint(1, Vector2f(0.f, -2.f));
-    rv.star.setPoint(2, Vector2f(-2.f, -2.f));
-    rv.star.setPoint(3, Vector2f(-2.f, -4.f));
-    rv.star.setPoint(4, Vector2f(0.f, -4.f));
-    rv.star.setPoint(5, Vector2f(0.f, -6.f));
-    rv.star.setPoint(6, Vector2f(2.f, -6.f));
-    rv.star.setPoint(7, Vector2f(2.f, -4.f));
-    rv.star.setPoint(8, Vector2f(4.f, -4.f));
-    rv.star.setPoint(9, Vector2f(4.f, -2.f));
-    rv.star.setPoint(10, Vector2f(2.f, -2.f));
-    rv.star.setPoint(11, Vector2f(2.f, 0.f));
-    */
+    rv.christmasTree = createChrismasTree(trunkCenter, trunkHeight, &rv.christmasTreeStar);
 
     return rv;
 }
