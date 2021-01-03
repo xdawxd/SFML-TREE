@@ -7,6 +7,11 @@ struct Scene
 {
     RectangleShape ground;
     RectangleShape trunk;
+
+    RectangleShape bark1;
+    RectangleShape bark2;
+    RectangleShape bark3;
+
     ConvexShape christmasTree;
     ConvexShape star;
 };
@@ -26,9 +31,26 @@ Scene createScene(int width, int height)
     float trunkCenter = (float)width / 2;
     float trunkHeight = (float)height - 60;
 
-    rv.trunk.setSize(Vector2f(50, 60));
+    float trunkW = 50;
+    float trunkH = 60;
+
+    rv.trunk.setSize(Vector2f(trunkW, trunkH));
     rv.trunk.setFillColor(Color(71, 54, 24));
-    rv.trunk.setPosition(trunkCenter - 25, trunkHeight);
+    rv.trunk.setPosition(trunkCenter - 25.f, trunkHeight);
+
+    //------------------------- BARK MODELS -----------------------------//
+
+    rv.bark1.setSize(Vector2f(trunkW-12.5f, trunkH-8.0f));
+    rv.bark1.setFillColor(Color(54, 41, 18)); // brown
+    rv.bark1.setPosition(trunkCenter-18.75f, trunkHeight);
+
+    rv.bark2.setSize(Vector2f(trunkW-25.0f, trunkH-16.0f));
+    rv.bark2.setFillColor(Color(45, 34, 15)); // darkChocolate
+    rv.bark2.setPosition(trunkCenter-12.5f, trunkHeight);
+
+    rv.bark3.setSize(Vector2f(trunkW-37.5f, trunkH-24.0f));
+    rv.bark3.setFillColor(Color(32, 24, 11)); // darkBrown
+    rv.bark3.setPosition(trunkCenter-6.25f, trunkHeight);
 
     //------------------------- CHRISTMAS TREE MODEL -----------------------------//
 
@@ -108,6 +130,11 @@ void drawScene(RenderWindow& win, const Scene& scene)
 {
     win.draw(scene.ground);
     win.draw(scene.trunk);
+
+    win.draw(scene.bark1);
+    win.draw(scene.bark2);
+    win.draw(scene.bark3);
+
     win.draw(scene.christmasTree);
     win.draw(scene.star);
 }
@@ -134,7 +161,7 @@ int main()
 
         //updateScene(sc);
 
-        window.clear(Color(101, 114, 135));
+        window.clear(Color(47, 41, 99));
 
         drawScene(window, sc);
 
