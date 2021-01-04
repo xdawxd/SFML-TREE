@@ -6,8 +6,6 @@ int main()
     RenderWindow window(VideoMode(800, 600), "Merry Christmas!");
     window.setFramerateLimit(1);
 
-    srand(time(NULL));
-
     Scene sc = createScene(window.getSize().x, window.getSize().y);
 
     while (window.isOpen())
