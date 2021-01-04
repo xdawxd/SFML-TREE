@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-#include "christmasTreeStar.h"
+//nclude "christmasTreeStar.h"
 
 using namespace sf;
 
@@ -10,7 +10,7 @@ ConvexShape starShine()
 	float trunkCenter = 400;
 	float christmasTreeTip = 240;
 
-	ConvexShape star = createChristmasTreeStar(trunkCenter, christmasTreeTip);
+	ConvexShape star;
 
 	Color yellow;
 	yellow.r = 255;
