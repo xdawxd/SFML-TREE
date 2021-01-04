@@ -5,11 +5,8 @@
 
 using namespace sf;
 
-struct christmasTreeStruct
+struct ChristmasTreeStruct
 {
-    int width;
-    int height;
-
     ConvexShape christmasTree;
     ConvexShape christmasTreeStar;
 
@@ -19,8 +16,6 @@ struct christmasTreeStruct
     RectangleShape createBark3(float trunkCenter, float trunkHeight, float trunkW, float trunkH);
 
     ConvexShape createTree(float trunkCenter, float trunkHeight, float *treeTip);
-
     ConvexShape createStar(float trunkCenter, float treeTip);
-
-    ConvexShape starShine(float trunkCenter, float treeTip, ConvexShape star);
+    ConvexShape starShine(float trunkCenter, float treeTip);
 };

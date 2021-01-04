@@ -1,6 +1,6 @@
 #include "christmasTree.h"
 
-RectangleShape christmasTreeStruct::createTrunk(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
+RectangleShape ChristmasTreeStruct::createTrunk(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
 {
     //------------------------- TRUNK MODEL -----------------------------//
 
@@ -13,7 +13,7 @@ RectangleShape christmasTreeStruct::createTrunk(float trunkCenter, float trunkHe
     return trunk;
 }
 
-RectangleShape christmasTreeStruct::createBark1(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
+RectangleShape ChristmasTreeStruct::createBark1(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
 {
     //------------------------- BARK MODELS -----------------------------//
 
@@ -26,7 +26,7 @@ RectangleShape christmasTreeStruct::createBark1(float trunkCenter, float trunkHe
     return bark;
 }
 
-RectangleShape christmasTreeStruct::createBark2(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
+RectangleShape ChristmasTreeStruct::createBark2(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
 {
     RectangleShape bark;
 
@@ -37,7 +37,7 @@ RectangleShape christmasTreeStruct::createBark2(float trunkCenter, float trunkHe
     return bark;
 }
 
-RectangleShape christmasTreeStruct::createBark3(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
+RectangleShape ChristmasTreeStruct::createBark3(float trunkCenter, float trunkHeight, float trunkW, float trunkH)
 {
     RectangleShape bark;
 
@@ -48,7 +48,7 @@ RectangleShape christmasTreeStruct::createBark3(float trunkCenter, float trunkHe
     return bark;
 }
 
-ConvexShape christmasTreeStruct::createTree(float trunkCenter, float trunkHeight, float *treeTip)
+ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight, float *treeTip)
 {
     //------------------------- CHRISTMAS TREE MODEL -----------------------------//
 
@@ -111,7 +111,7 @@ ConvexShape christmasTreeStruct::createTree(float trunkCenter, float trunkHeight
     return christmasTree;
 }
 
-ConvexShape christmasTreeStruct::createStar(float trunkCenter, float treeTip)
+ConvexShape ChristmasTreeStruct::createStar(float trunkCenter, float treeTip)
 {
     //------------------------- STAR MODEL -----------------------------//
 
@@ -139,8 +139,10 @@ ConvexShape christmasTreeStruct::createStar(float trunkCenter, float treeTip)
     return treeStar;
 }
 
-ConvexShape christmasTreeStruct::starShine(float trunkCenter, float treeTip, ConvexShape star)
+ConvexShape ChristmasTreeStruct::starShine(float trunkCenter, float treeTip)
 {
+    ConvexShape star = createStar(trunkCenter, treeTip);
+
     Color yellow;
     yellow.r = 255;
     yellow.g = 255;

@@ -25,10 +25,8 @@ struct Scene
 Scene createScene(int sWidth, int sHeight)
 {
     Scene rv;
-    christmasTreeStruct cts;
+    ChristmasTreeStruct cts;
 
-    cts.width = sWidth;
-    cts.width = sHeight;
     float trunkCenter = (float)sWidth / 2;
     float trunkHeight = (float)sHeight - 60;
     float trunkW = 50;
@@ -48,7 +46,7 @@ Scene createScene(int sWidth, int sHeight)
     rv.ground.setPosition(0, (float)sHeight - 20.f);
 
     //------------------------- TRUNK MODEL -----------------------------//
-    
+
     rv.trunk = cts.createTrunk(trunkCenter, trunkHeight, trunkW, trunkH);
 
     //------------------------- BARK MODELS -----------------------------//
@@ -67,7 +65,7 @@ Scene createScene(int sWidth, int sHeight)
 
     //------------------------- SHINING STAR MODEL -----------------------------//
 
-    rv.starShine = cts.starShine(trunkCenter, treeTip, rv.christmasTreeStar);
+    rv.starShine = cts.starShine(trunkCenter, treeTip);
 
     return rv;
 }
@@ -77,9 +75,10 @@ void drawScene(RenderWindow& win, const Scene& scene)
     win.draw(scene.background);
 
     int numOfStars = 20;
+    StarsStruct ss;
 
-    std::vector<ConvexShape> vec1 = createStars1(numOfStars);
-    std::vector<RectangleShape> vec2 = createStars2(numOfStars);
+    std::vector<ConvexShape> vec1 = ss.createStars1(numOfStars);
+    std::vector<RectangleShape> vec2 = ss.createStars2(numOfStars);
 
     for (int i = 0; i < numOfStars; i++)
     {
@@ -96,11 +95,10 @@ void drawScene(RenderWindow& win, const Scene& scene)
 
     win.draw(scene.christmasTree);
     win.draw(scene.christmasTreeStar);
-    
+
     win.draw(scene.starShine);
     /*
     std::vector<CircleShape> balls(13, scene.ball);
-
     for (size_t i = 0; i < balls.size(); i++)
     {
         win.draw(balls.at(i));
@@ -110,6 +108,5 @@ void drawScene(RenderWindow& win, const Scene& scene)
 /*
 void updateScene(Scene& scene)
 {
-
 }
 */
