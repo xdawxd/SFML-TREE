@@ -149,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="christmasTree.h" />
-    <ClInclude Include="christmasTreeStar.h" />
+    <ClInclude Include="christmasTreeDecorations.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Stars.h" />
     <ClInclude Include="starShine.h" />
