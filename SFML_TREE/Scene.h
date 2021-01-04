@@ -4,72 +4,70 @@
 #include "SFML/Graphics.hpp"
 #include "christmasTree.h"
 #include "Stars.h"
-#include "starShine.h"
 #include "christmasTreeDecorations.h"
 
 struct Scene
 {
     RectangleShape background;
-
     RectangleShape ground;
-    RectangleShape trunk;
 
+    RectangleShape trunk;
     RectangleShape bark1;
     RectangleShape bark2;
     RectangleShape bark3;
 
     ConvexShape christmasTree;
     ConvexShape christmasTreeStar;
-
     ConvexShape starShine;
-
     CircleShape ball; // 13
 };
 
-Scene createScene(int width, int height)
+Scene createScene(int sWidth, int sHeight)
 {
     Scene rv;
+    christmasTreeStruct cts;
+
+    cts.width = sWidth;
+    cts.width = sHeight;
+    float trunkCenter = (float)sWidth / 2;
+    float trunkHeight = (float)sHeight - 60;
+    float trunkW = 50;
+    float trunkH = 60;
+    float treeTip = 0;
+
 
     //------------------------- BACKGROUND -----------------------------//
 
     rv.background.setFillColor(Color(28, 22, 36)); //47, 41, 99
-    rv.background.setSize(Vector2f((float)width, (float)height));
+    rv.background.setSize(Vector2f((float)sWidth, (float)sHeight));
 
     //------------------------- GROUND MODEL -----------------------------//
 
-    rv.ground.setSize(Vector2f((float)width, 20.f));
+    rv.ground.setSize(Vector2f((float)sWidth, 20.f));
     rv.ground.setFillColor(Color(102, 89, 71));
-    rv.ground.setPosition(0, (float)height - 20.f);
+    rv.ground.setPosition(0, (float)sHeight - 20.f);
 
     //------------------------- TRUNK MODEL -----------------------------//
-
-    float trunkCenter = (float)width / 2;
-    float trunkHeight = (float)height - 60;
-
-    float trunkW = 50;
-    float trunkH = 60;
-
-    rv.trunk.setSize(Vector2f(trunkW, trunkH));
-    rv.trunk.setFillColor(Color(71, 54, 24));
-    rv.trunk.setPosition(trunkCenter - 25.f, trunkHeight);
+    
+    rv.trunk = cts.createTrunk(trunkCenter, trunkHeight, trunkW, trunkH);
 
     //------------------------- BARK MODELS -----------------------------//
 
-    rv.bark1.setSize(Vector2f(trunkW - 12.5f, trunkH - 8.0f));
-    rv.bark1.setFillColor(Color(54, 41, 18)); // brown
-    rv.bark1.setPosition(trunkCenter - 18.75f, trunkHeight);
-
-    rv.bark2.setSize(Vector2f(trunkW - 25.0f, trunkH - 16.0f));
-    rv.bark2.setFillColor(Color(45, 34, 15)); // darkChocolate
-    rv.bark2.setPosition(trunkCenter - 12.5f, trunkHeight);
-
-    rv.bark3.setSize(Vector2f(trunkW - 37.5f, trunkH - 24.0f));
-    rv.bark3.setFillColor(Color(32, 24, 11)); // darkBrown
-    rv.bark3.setPosition(trunkCenter - 6.25f, trunkHeight);
+    rv.bark1 = cts.createBark1(trunkCenter, trunkHeight, trunkW, trunkH);
+    rv.bark2 = cts.createBark2(trunkCenter, trunkHeight, trunkW, trunkH);
+    rv.bark3 = cts.createBark3(trunkCenter, trunkHeight, trunkW, trunkH);
 
     //------------------------- CHRISTMAS TREE MODEL -----------------------------//
 
-    rv.starShine = starShine();
+    rv.christmasTree = cts.createTree(trunkCenter, trunkHeight, &treeTip);
+
+    //------------------------- STAR MODEL -----------------------------//
+
+    rv.christmasTreeStar = cts.createStar(trunkCenter, treeTip);
+
+    //------------------------- SHINING STAR MODEL -----------------------------//
+
+    rv.starShine = cts.starShine(trunkCenter, treeTip, rv.christmasTreeStar);
 
     return rv;
 }
@@ -98,15 +96,16 @@ void drawScene(RenderWindow& win, const Scene& scene)
 
     win.draw(scene.christmasTree);
     win.draw(scene.christmasTreeStar);
-
+    
     win.draw(scene.starShine);
-
+    /*
     std::vector<CircleShape> balls(13, scene.ball);
 
     for (size_t i = 0; i < balls.size(); i++)
     {
         win.draw(balls.at(i));
     }
+    */
 }
 /*
 void updateScene(Scene& scene)
