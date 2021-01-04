@@ -5,6 +5,7 @@
 #include "christmasTree.h"
 #include "Stars.h"
 #include "starShine.h"
+#include "christmasTreeDecorations.h"
 
 struct Scene
 {
@@ -21,6 +22,8 @@ struct Scene
     ConvexShape christmasTreeStar;
 
     ConvexShape starShine;
+
+    CircleShape ball; // 13
 };
 
 Scene createScene(int width, int height)
@@ -66,8 +69,6 @@ Scene createScene(int width, int height)
 
     //------------------------- CHRISTMAS TREE MODEL -----------------------------//
 
-    rv.christmasTree = createChrismasTree(trunkCenter, trunkHeight, &rv.christmasTreeStar);
-
     rv.starShine = starShine();
 
     return rv;
@@ -99,6 +100,13 @@ void drawScene(RenderWindow& win, const Scene& scene)
     win.draw(scene.christmasTreeStar);
 
     win.draw(scene.starShine);
+
+    std::vector<CircleShape> balls(13, scene.ball);
+
+    for (size_t i = 0; i < balls.size(); i++)
+    {
+        win.draw(balls.at(i));
+    }
 }
 /*
 void updateScene(Scene& scene)
