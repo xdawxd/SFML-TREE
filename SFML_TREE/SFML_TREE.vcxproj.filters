@@ -24,6 +24,9 @@
     <ClCompile Include="Stars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="christmasTreeDecorations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
