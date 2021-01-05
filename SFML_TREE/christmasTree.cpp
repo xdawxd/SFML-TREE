@@ -63,9 +63,6 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
     float verticalSpread = 60;
     float currentHeight = trunkHeight;
 
-    float pointEightX = 0;
-    float pointEightY = 0;
-
     for (int i = 0; i < christmasTree.getPointCount(); i++)
     {
         if (i <= 9)
@@ -85,12 +82,6 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
             {
                 treeDec = treeDec - 35;
                 christmasTree.setPoint(i, Vector2f(trunkCenter - (float)treeDec, currentHeight));
-
-                if (i == 8)
-                {
-                    pointEightX = trunkCenter - (float)treeDec;
-                    pointEightY = currentHeight;
-                }
             }
         }
         else if (i > 9)
@@ -108,6 +99,7 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
             }
         }
     }
+
     return christmasTree;
 }
 
@@ -155,3 +147,4 @@ ConvexShape ChristmasTreeStruct::starShine(float trunkCenter, float treeTip)
 
     return star;
 }
+
