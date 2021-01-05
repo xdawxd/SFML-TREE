@@ -1,10 +1,11 @@
 #pragma once
 
-#include <vector>
 #include "SFML/Graphics.hpp"
 #include "christmasTree.h"
 #include "Stars.h"
 #include "christmasTreeDecorations.h"
+
+#include <iostream>
 
 struct Scene
 {
@@ -19,7 +20,7 @@ struct Scene
     ConvexShape christmasTree;
     ConvexShape christmasTreeStar;
     ConvexShape starShine;
-    CircleShape ball; // 13
+
 };
 
 Scene createScene(int sWidth, int sHeight)
@@ -32,7 +33,6 @@ Scene createScene(int sWidth, int sHeight)
     float trunkW = 50;
     float trunkH = 60;
     float treeTip = 0;
-
 
     //------------------------- BACKGROUND -----------------------------//
 
@@ -76,6 +76,7 @@ void drawScene(RenderWindow& win, const Scene& scene)
 
     int numOfStars = 20;
     StarsStruct ss;
+    ChristmasTreeStruct cts;
 
     std::vector<ConvexShape> vec1 = ss.createStars1(numOfStars);
     std::vector<RectangleShape> vec2 = ss.createStars2(numOfStars);
@@ -87,26 +88,14 @@ void drawScene(RenderWindow& win, const Scene& scene)
     }
 
     win.draw(scene.ground);
-    win.draw(scene.trunk);
 
+    win.draw(scene.trunk);
     win.draw(scene.bark1);
     win.draw(scene.bark2);
     win.draw(scene.bark3);
 
     win.draw(scene.christmasTree);
     win.draw(scene.christmasTreeStar);
-
     win.draw(scene.starShine);
-    /*
-    std::vector<CircleShape> balls(13, scene.ball);
-    for (size_t i = 0; i < balls.size(); i++)
-    {
-        win.draw(balls.at(i));
-    }
-    */
-}
-/*
-void updateScene(Scene& scene)
-{
-}
-*/
+
+}   
