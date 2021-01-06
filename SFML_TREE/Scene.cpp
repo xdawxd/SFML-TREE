@@ -1,5 +1,7 @@
 #include "SFML/Graphics.hpp"
-#include "Scene.h"
+#include "generateScene.h"
+
+
 
 int main()
 {
