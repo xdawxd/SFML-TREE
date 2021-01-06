@@ -1,55 +1,49 @@
 #include "christmasTreeDecorations.h"
 
-std::vector<Color> Decorations::Colors()
-{
-    Color gold;
-    gold.r = 255;
-    gold.g = 213;
-    gold.b = 0;
-
-    Color silver;
-    silver.r = 192;
-    silver.g = 192;
-    silver.b = 192;
-
-    std::vector<Color> colors = { gold, silver };
-    return colors;
-}
-
-// CREATE THEESE THE SAME AS STARS ON THE SKY
-
-
-CircleShape Decorations::createBall(float x, float y, int numOfBalls)
+CircleShape Decorations::createBauble(float x, float y)
 {
     CircleShape ball;
 
-    ball.setRadius((float)(rand() % 15) + 5);
+    int colorR = rand() % 255;
+    int colorG = rand() % 255;
+    int colorB = rand() % 255;
+    int colorA = 96;
+
+    ball.setRadius(10.f);
     ball.setPosition(x, y);
-    ball.setFillColor(Color(rand() % 255, rand() % 255, rand() % 255));
+    ball.setFillColor(Color(colorR, colorG, colorB));
+
+    ball.setOutlineColor(Color(colorR, colorG, colorB, colorA));
+    ball.setOutlineThickness(3.f);
 
     return ball;
 }
 
-RectangleShape Decorations::createBox(float x, float y, int numOfObjects)
+std::vector<RectangleShape> Decorations::gift(float positionX, float positionY, Color color) // 300, 580
 {
-    std::vector<Color> colors = Colors();
-    RectangleShape box;
 
-    box.setSize(Vector2f(10.f, 5.f));
-    box.setPosition(x, y);
-    box.setFillColor(Color(colors[rand() % 2]));
+    float sizeX = 55;
+    float sizeY = 55;
 
-    return box;
-}
+    RectangleShape box1;
+    RectangleShape box2;
+    RectangleShape box3;
 
-CircleShape Decorations::createEye(float x, float y, int numOfObjects)
-{
-    std::vector<Color> colors = Colors();
-    CircleShape eye;
+    box1.setSize(Vector2f(sizeX, sizeY));
+    box1.setFillColor(color);
+    box1.setPosition(positionX, positionY - sizeY);
+    box1.setOutlineColor(Color(211, 175, 55));
+    box1.setOutlineThickness(1.f);
 
-    eye.setRadius((float)(rand() % 10) + 5);
-    eye.setPosition(x, y);
-    eye.setFillColor(Color(colors[rand() % 2]));
+    box2.setSize(Vector2f(sizeX, sizeY / 4));
+    box2.setFillColor(Color(211, 175, 55));
+    box2.setPosition(positionX, (positionY - sizeY) + (sizeY / 2.5));
 
-    return eye;
+    box3.setSize(Vector2f(sizeX / 4, sizeY));
+    box3.setFillColor(Color(211, 175, 55));
+    box3.setPosition(positionX + (sizeX / 2.5), positionY - sizeY);
+
+    std::vector<RectangleShape> giftElements = { box1, box2, box3 };
+
+    return giftElements;
 }
