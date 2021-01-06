@@ -65,7 +65,7 @@ Scene createScene(int sWidth, int sHeight)
 
     //------------------------- SHINING STAR MODEL -----------------------------//
 
-    rv.starShine = cts.starShine(trunkCenter, treeTip);
+    //rv.starShine = cts.starShine(trunkCenter, treeTip);
 
     return rv;
 }
@@ -118,7 +118,6 @@ void drawScene(RenderWindow& win, const Scene& scene)
 
     win.draw(scene.christmasTree);
     win.draw(scene.christmasTreeStar);
-    win.draw(scene.starShine);
 
     win.draw(dec.createBauble(400, 300));
     win.draw(dec.createBauble(350, 340));
