@@ -100,6 +100,9 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
         }
     }
 
+    christmasTree.setOutlineColor(Color(25, 56, 25));
+    christmasTree.setOutlineThickness(2.f);
+
     return christmasTree;
 }
 
