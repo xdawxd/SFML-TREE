@@ -148,6 +148,7 @@
     <ClCompile Include="christmasTree.cpp" />
     <ClCompile Include="christmasTreeDecorations.cpp" />
     <ClCompile Include="generateScene.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Stars.cpp" />
   </ItemGroup>
   <ItemGroup>

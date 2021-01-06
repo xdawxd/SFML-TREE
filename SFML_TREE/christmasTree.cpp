@@ -56,6 +56,8 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
 
     christmasTree.setPointCount(19);
     christmasTree.setFillColor(Color(36, 92, 36));
+    christmasTree.setOutlineColor(Color(25, 56, 25));
+    christmasTree.setOutlineThickness(2.f);
 
     double treeDiv = 200;
     double treeDec = 235;
@@ -99,9 +101,6 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
             }
         }
     }
-
-    christmasTree.setOutlineColor(Color(25, 56, 25));
-    christmasTree.setOutlineThickness(2.f);
 
     return christmasTree;
 }

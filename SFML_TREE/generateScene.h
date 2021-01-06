@@ -5,82 +5,63 @@
 #include "Stars.h"
 #include "christmasTreeDecorations.h"
 
-#include <iostream>
-
 struct Scene
 {
     RectangleShape background;
+    RectangleShape snow;
     RectangleShape ground;
-
-    RectangleShape trunk;
-    RectangleShape bark1;
-    RectangleShape bark2;
-    RectangleShape bark3;
-
-    ConvexShape christmasTree;
-    ConvexShape christmasTreeStar;
-    ConvexShape starShine;
-    // float trunkCenter = 400;
-};
-
-Scene createScene(int sWidth, int sHeight)
-{
-    Scene rv;
-    ChristmasTreeStruct cts;
-
-    float trunkCenter = (float)sWidth / 2;
-    float trunkHeight = (float)sHeight - 60;
+    
+    float trunkCenter = 400;
+    float trunkHeight = 540;
     float trunkW = 50;
     float trunkH = 60;
     float treeTip = 0;
 
+};
+
+Scene createScene(int sWidth, int sHeight)
+{
+    Scene sc;
+
     //------------------------- BACKGROUND -----------------------------//
 
-    rv.background.setFillColor(Color(28, 22, 36)); //47, 41, 99
-    rv.background.setSize(Vector2f((float)sWidth, (float)sHeight));
+    sc.background.setFillColor(Color(28, 22, 36)); //47, 41, 99
+    sc.background.setSize(Vector2f((float)sWidth, (float)sHeight));
 
     //------------------------- GROUND MODEL -----------------------------//
 
-    rv.ground.setSize(Vector2f((float)sWidth, 20.f));
-    rv.ground.setFillColor(Color(102, 89, 71));
-    rv.ground.setPosition(0, (float)sHeight - 20.f);
+    sc.ground.setSize(Vector2f((float)sWidth, 20.f));
+    sc.ground.setFillColor(Color(102, 89, 71));
+    sc.ground.setPosition(0, (float)sHeight - 20.f);
 
-    //------------------------- TRUNK MODEL -----------------------------//
+    sc.snow.setSize(Vector2f((float)sWidth, 15.f));
+    sc.snow.setFillColor(Color().White);
+    sc.snow.setPosition(0, (float)sHeight - 20.f);
 
-    rv.trunk = cts.createTrunk(trunkCenter, trunkHeight, trunkW, trunkH);
+    return sc;
+};
 
-    //------------------------- BARK MODELS -----------------------------//
-
-    rv.bark1 = cts.createBark1(trunkCenter, trunkHeight, trunkW, trunkH);
-    rv.bark2 = cts.createBark2(trunkCenter, trunkHeight, trunkW, trunkH);
-    rv.bark3 = cts.createBark3(trunkCenter, trunkHeight, trunkW, trunkH);
-
-    //------------------------- CHRISTMAS TREE MODEL -----------------------------//
-
-    rv.christmasTree = cts.createTree(trunkCenter, trunkHeight, &treeTip);
-
-    //------------------------- STAR MODEL -----------------------------//
-
-    rv.christmasTreeStar = cts.createStar(trunkCenter, treeTip);
-
-    //------------------------- SHINING STAR MODEL -----------------------------//
-
-    //rv.starShine = cts.starShine(trunkCenter, treeTip);
-
-    return rv;
-}
-
-void drawScene(RenderWindow& win, const Scene& scene)
+void drawScene(RenderWindow& win, Scene scene)
 {
     win.draw(scene.background);
 
+    Color color1(181, 2, 2);
+    Color color2(0, 122, 0);
+    Color color3(125, 125, 125);
+
     int numOfStars = 20;
     int numOfBaubles = 10;
+
     StarsStruct ss;
+    ChristmasTreeStruct cts;
     Decorations dec;
 
     std::vector<ConvexShape> vec1 = ss.createStars1(numOfStars);
     std::vector<RectangleShape> vec2 = ss.createStars2(numOfStars);
+
+    std::vector<RectangleShape> gift1 = dec.gift(300, 590, color1);
+    std::vector<RectangleShape> gift2 = dec.gift(450, 590, color2);
+    std::vector<RectangleShape> gift3 = dec.gift(520, 590, color3);
 
     for (int i = 0; i < numOfStars; i++)
     {
@@ -89,35 +70,22 @@ void drawScene(RenderWindow& win, const Scene& scene)
     }
 
     win.draw(scene.ground);
+    win.draw(scene.snow);
 
-    win.draw(scene.trunk);
-    win.draw(scene.bark1);
-    win.draw(scene.bark2);
-    win.draw(scene.bark3);
-
-    Color color1(181, 2, 2);
-    Color color2(0, 122, 0);
-    Color color3(125, 125, 125);
-
-    std::vector<RectangleShape> gift1 = dec.gift(300, 590, color1);
-    std::vector<RectangleShape> gift2 = dec.gift(450, 590, color2);
-    std::vector<RectangleShape> gift3 = dec.gift(520, 590, color3);
+    win.draw(cts.createTrunk(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
+    win.draw(cts.createBark1(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
+    win.draw(cts.createBark2(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
+    win.draw(cts.createBark3(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
 
     for (size_t i = 0; i < gift1.size(); i++)
     {
         win.draw(gift1.at(i));
-    }
-    for (size_t i = 0; i < gift2.size(); i++)
-    {
         win.draw(gift2.at(i));
-    }
-    for (size_t i = 0; i < gift3.size(); i++)
-    {
         win.draw(gift3.at(i));
     }
 
-    win.draw(scene.christmasTree);
-    win.draw(scene.christmasTreeStar);
+    win.draw(cts.createTree(scene.trunkCenter, scene.trunkHeight, &scene.treeTip));
+    win.draw(cts.createStar(scene.trunkCenter, scene.treeTip));
 
     win.draw(dec.createBauble(400, 300));
     win.draw(dec.createBauble(350, 340));
@@ -132,9 +100,3 @@ void drawScene(RenderWindow& win, const Scene& scene)
     win.draw(dec.createBauble(250, 510));
     
 }   
-/*
-void updateScene(Scene& scene)
-{
-    
-}
-*/
