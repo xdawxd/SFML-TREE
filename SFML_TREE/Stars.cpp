@@ -76,6 +76,5 @@ std::vector<RectangleShape> StarsStruct::createStars2(int numOfStars)
 
 		stars.push_back(starDot);
 	}
-
 	return stars;
 }

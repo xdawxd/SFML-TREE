@@ -1,8 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include "generateScene.h"
 
-
-
 int main()
 {
     RenderWindow window(VideoMode(800, 600), "Merry Christmas!");
@@ -20,16 +18,6 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-        /*
-        Clock clock;
-        Time elapsed = clock.getElapsedTime(); 
-        
-        if (elapsed.asSeconds() >= 1)
-        {
-            updateScene(sc);
-            clock.restart();
-        }
-        */
 
         window.clear();
 
@@ -37,6 +25,5 @@ int main()
 
         window.display();
     }
-
     return 0;
 }
