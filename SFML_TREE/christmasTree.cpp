@@ -101,7 +101,6 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
             }
         }
     }
-
     return christmasTree;
 }
 
@@ -134,4 +133,3 @@ ConvexShape ChristmasTreeStruct::createStar(float trunkCenter, float treeTip)
 
     return treeStar;
 }
-

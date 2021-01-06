@@ -1,8 +1,7 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
-#include "christmasTree.h"
 #include "Stars.h"
+#include "christmasTree.h"
 #include "christmasTreeDecorations.h"
 
 struct Scene
@@ -16,7 +15,6 @@ struct Scene
     float trunkW = 50;
     float trunkH = 60;
     float treeTip = 0;
-
 };
 
 Scene createScene(int sWidth, int sHeight)
@@ -98,5 +96,4 @@ void drawScene(RenderWindow& win, Scene scene)
     win.draw(dec.createBauble(490, 480));
     win.draw(dec.createBauble(400, 500));
     win.draw(dec.createBauble(250, 510));
-    
 }   

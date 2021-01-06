@@ -19,9 +19,8 @@ CircleShape Decorations::createBauble(float x, float y)
     return ball;
 }
 
-std::vector<RectangleShape> Decorations::gift(float positionX, float positionY, Color color) // 300, 580
+std::vector<RectangleShape> Decorations::gift(float positionX, float positionY, Color color)
 {
-
     float sizeX = 55;
     float sizeY = 55;
 
