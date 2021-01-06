@@ -56,6 +56,8 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
 
     christmasTree.setPointCount(19);
     christmasTree.setFillColor(Color(36, 92, 36));
+    christmasTree.setOutlineColor(Color(25, 56, 25));
+    christmasTree.setOutlineThickness(2.f);
 
     double treeDiv = 200;
     double treeDec = 235;
@@ -100,9 +102,6 @@ ConvexShape ChristmasTreeStruct::createTree(float trunkCenter, float trunkHeight
         }
     }
 
-    christmasTree.setOutlineColor(Color(25, 56, 25));
-    christmasTree.setOutlineThickness(2.f);
-
     return christmasTree;
 }
 
@@ -114,6 +113,8 @@ ConvexShape ChristmasTreeStruct::createStar(float trunkCenter, float treeTip)
 
     treeStar.setPointCount(10);
     treeStar.setFillColor(Color().Yellow);
+    treeStar.setOutlineThickness(3.f);
+    treeStar.setOutlineColor(Color(255, 255, 0, 64));
 
     float starW = trunkCenter - 12.0f;
     float starH = treeTip + 14.0f;
@@ -132,22 +133,5 @@ ConvexShape ChristmasTreeStruct::createStar(float trunkCenter, float treeTip)
     treeStar.setPoint(9, Vector2f(+12.0f, -7.0f));
 
     return treeStar;
-}
-
-ConvexShape ChristmasTreeStruct::starShine(float trunkCenter, float treeTip)
-{
-    ConvexShape star = createStar(trunkCenter, treeTip);
-
-    Color yellow;
-    yellow.r = 255;
-    yellow.g = 255;
-    yellow.b = 0;
-    yellow.a = 64;
-
-    star.setFillColor(yellow);
-    star.setOutlineColor(yellow);
-    star.setOutlineThickness(3.f);
-
-    return star;
 }
 

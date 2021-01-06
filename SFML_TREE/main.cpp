@@ -1,5 +1,5 @@
 #include "SFML/Graphics.hpp"
-#include "Scene.h"
+#include "generateScene.h"
 
 int main()
 {
@@ -18,16 +18,6 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-        /*
-        Clock clock;
-        Time elapsed = clock.getElapsedTime(); 
-        
-        if (elapsed.asSeconds() >= 1)
-        {
-            updateScene(sc);
-            clock.restart();
-        }
-        */
 
         window.clear();
 

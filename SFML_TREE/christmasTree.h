@@ -16,6 +16,5 @@ struct ChristmasTreeStruct
 
     ConvexShape createTree(float trunkCenter, float trunkHeight, float* treeTip);
     ConvexShape createStar(float trunkCenter, float treeTip);
-    ConvexShape starShine(float trunkCenter, float treeTip);
 };
 
