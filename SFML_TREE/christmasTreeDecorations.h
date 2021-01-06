@@ -7,8 +7,6 @@ using namespace sf;
 
 struct Decorations
 {
-	std::vector<Color> Colors();
-	CircleShape createBall(float x, float y, int numOfObjects);
-	RectangleShape createBox(float x, float y, int numOfObjects);
-	CircleShape createEye(float x, float y, int numOfObjects);
+	CircleShape createBauble(float x, float y);
+	std::vector<RectangleShape> gift(float positionX, float positionY, Color color);
 };

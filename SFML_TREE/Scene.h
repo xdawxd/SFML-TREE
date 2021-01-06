@@ -20,7 +20,7 @@ struct Scene
     ConvexShape christmasTree;
     ConvexShape christmasTreeStar;
     ConvexShape starShine;
-
+    // float trunkCenter = 400;
 };
 
 Scene createScene(int sWidth, int sHeight)
@@ -75,8 +75,9 @@ void drawScene(RenderWindow& win, const Scene& scene)
     win.draw(scene.background);
 
     int numOfStars = 20;
+    int numOfBaubles = 10;
     StarsStruct ss;
-    ChristmasTreeStruct cts;
+    Decorations dec;
 
     std::vector<ConvexShape> vec1 = ss.createStars1(numOfStars);
     std::vector<RectangleShape> vec2 = ss.createStars2(numOfStars);
@@ -94,8 +95,47 @@ void drawScene(RenderWindow& win, const Scene& scene)
     win.draw(scene.bark2);
     win.draw(scene.bark3);
 
+    Color color1(181, 2, 2);
+    Color color2(0, 122, 0);
+    Color color3(125, 125, 125);
+
+    std::vector<RectangleShape> gift1 = dec.gift(300, 590, color1);
+    std::vector<RectangleShape> gift2 = dec.gift(450, 590, color2);
+    std::vector<RectangleShape> gift3 = dec.gift(520, 590, color3);
+
+    for (size_t i = 0; i < gift1.size(); i++)
+    {
+        win.draw(gift1.at(i));
+    }
+    for (size_t i = 0; i < gift2.size(); i++)
+    {
+        win.draw(gift2.at(i));
+    }
+    for (size_t i = 0; i < gift3.size(); i++)
+    {
+        win.draw(gift3.at(i));
+    }
+
     win.draw(scene.christmasTree);
     win.draw(scene.christmasTreeStar);
     win.draw(scene.starShine);
 
+    win.draw(dec.createBauble(400, 300));
+    win.draw(dec.createBauble(350, 340));
+    win.draw(dec.createBauble(400, 370));
+    win.draw(dec.createBauble(460, 390));
+    win.draw(dec.createBauble(325, 400));
+    win.draw(dec.createBauble(430, 430));
+    win.draw(dec.createBauble(365, 440));
+    win.draw(dec.createBauble(310, 465));
+    win.draw(dec.createBauble(490, 480));
+    win.draw(dec.createBauble(400, 500));
+    win.draw(dec.createBauble(250, 510));
+    
 }   
+/*
+void updateScene(Scene& scene)
+{
+    
+}
+*/
