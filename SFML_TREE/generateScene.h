@@ -33,7 +33,7 @@ struct Scene
     float treeTip = 0;
 
     int numOfStars = 40;
-    int numOfSnowParticles = 150;
+    int numOfSnowParticles = 250;
 };
 
 Scene createScene(int sWidth, int sHeight)
@@ -153,7 +153,7 @@ void updateScene(Scene &scene)
         float getX = scene.snowParticles.at(i).getPosition().x;
         float getY = scene.snowParticles.at(i).getPosition().y;
 
-        scene.snowParticles.at(i).setPosition(getX, getY + 1);
+        scene.snowParticles.at(i).setPosition(getX + (rand()%2)-0.5, getY + rand()%2);
 
         if (scene.snowParticles.at(i).getPosition().y > 580)
         {
