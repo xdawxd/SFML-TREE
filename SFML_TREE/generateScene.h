@@ -46,7 +46,9 @@ struct Scene
     float treeTip = 0;
 
     int numOfStars = 40;
-    int numOfSnowParticles = 250;
+    int numOfSnowParticles = 300;
+
+    Clock clock;
 };
 
 Scene createScene(int sWidth, int sHeight)

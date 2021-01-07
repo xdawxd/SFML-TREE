@@ -2,25 +2,19 @@
 
 std::vector<Color> StarsStruct::Colors()
 {
-	Color mint;
-	mint.r = 127;
-	mint.g = 255;
-	mint.b = 202;
-	mint.a = rand() % 256 + 128;
-
-	Color peach;
-	peach.r = 255;
-	peach.g = 166;
-	peach.b = 127;
-	peach.a = rand() % 256 + 128;
+	Color azure;
+	azure.r = 89;
+	azure.g = 184;
+	azure.b = 235;
+	azure.a = rand() % 256 + 192;
 
 	Color lightYellow;
-	lightYellow.r = 255;
-	lightYellow.g = 237;
-	lightYellow.b = 175;
-	lightYellow.a = rand() % 256 + 128;
+	lightYellow.r = 244;
+	lightYellow.g = 224;
+	lightYellow.b = 112;
+	lightYellow.a = 255;
 
-	std::vector<Color> colors = { mint, peach, lightYellow };
+	std::vector<Color> colors = { azure, lightYellow };
 
 	return colors;
 }
@@ -50,7 +44,7 @@ std::vector<ConvexShape> StarsStruct::createStars1(int numOfStars)
 
 	for (int i = 0; i < numOfStars; i++) {
 		star.setPosition(Vector2f(rand() % 800, rand() % 600));
-		star.setFillColor(colors[rand() % 3]);
+		star.setFillColor(colors[rand() % 2]);
 		stars.push_back(star);
 	}
 	return stars;
@@ -72,7 +66,7 @@ std::vector<RectangleShape> StarsStruct::createStars2(int numOfStars)
 
 		starDot.setSize(Vector2f((float)starSize, (float)starSize));
 		starDot.setPosition(Vector2f(rand() % 800, rand() % 600));
-		starDot.setFillColor(colors[rand() % 3]);
+		starDot.setFillColor(colors[rand() % 2]);
 
 		stars.push_back(starDot);
 	}
