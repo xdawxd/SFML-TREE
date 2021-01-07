@@ -7,13 +7,21 @@
 struct Scene
 {
     RectangleShape background;
-    RectangleShape snow;
-    RectangleShape ground;
     std::vector<CircleShape> snowParticles;
-
     std::vector<ConvexShape> stars1;
     std::vector<RectangleShape> stars2;
-    
+
+    RectangleShape snow;
+    RectangleShape ground;
+
+    RectangleShape trunk;
+    RectangleShape bark1;
+    RectangleShape bark2;
+    RectangleShape bark3;
+
+    ConvexShape christmasTree;
+    ConvexShape christmasTreeStar;
+
     CircleShape bauble1;
     CircleShape bauble2;
     CircleShape bauble3;
@@ -25,6 +33,11 @@ struct Scene
     CircleShape bauble9;
     CircleShape bauble10;
     CircleShape bauble11;
+
+    std::vector<RectangleShape> gift1;
+    std::vector<RectangleShape> gift2;
+    std::vector<RectangleShape> gift3;
+    std::vector<RectangleShape> gift4;
 
     float trunkCenter = 400;
     float trunkHeight = 540;
@@ -40,6 +53,7 @@ Scene createScene(int sWidth, int sHeight)
 {
     Scene sc;
     StarsStruct ss;
+    ChristmasTreeStruct cts;
     Decorations dec;
 
     //------------------------- BACKGROUND -----------------------------//
@@ -47,7 +61,24 @@ Scene createScene(int sWidth, int sHeight)
     sc.background.setFillColor(Color(28, 22, 36)); //47, 41, 99
     sc.background.setSize(Vector2f((float)sWidth, (float)sHeight));
 
-    //------------------------- GROUND MODEL -----------------------------//
+    //------------------------- SNOWFLAKES -----------------------------//
+
+    for (int i = 0; i < sc.numOfSnowParticles; i++)
+    {
+        CircleShape snowBall;
+        snowBall.setRadius((float)(rand() % 2) + 1);
+        snowBall.setPosition((float)(rand() % sWidth), (float)(rand() % sHeight));
+        snowBall.setFillColor(Color(255, 255, 255, rand() % 255 + 160));
+
+        sc.snowParticles.push_back(snowBall);
+    }
+
+    //------------------------- STARS -----------------------------//
+
+    sc.stars1 = ss.createStars1(sc.numOfStars);
+    sc.stars2 = ss.createStars2(sc.numOfStars);
+
+    //------------------------- GROUND -----------------------------//
 
     sc.ground.setSize(Vector2f((float)sWidth, 20.f));
     sc.ground.setFillColor(Color(102, 89, 71));
@@ -57,19 +88,26 @@ Scene createScene(int sWidth, int sHeight)
     sc.snow.setFillColor(Color().White);
     sc.snow.setPosition(0, (float)sHeight - 20.f);
 
-    //------------------------- SNOWFLAKES MODEL -----------------------------//
+    //------------------------- TRUNK -----------------------------//
 
-    for (int i = 0; i < sc.numOfSnowParticles; i++)
-    {
-        CircleShape snowBall;
-        snowBall.setRadius((float)(rand() % 2) + 1);
-        snowBall.setPosition((float)(rand()%sWidth), (float)(rand()%sHeight));
-        snowBall.setFillColor(Color(255, 255, 255, rand()%255+160));
+    sc.trunk = cts.createTrunk(sc.trunkCenter, sc.trunkHeight, sc.trunkW, sc.trunkH);
+    sc.bark1 = cts.createBark1(sc.trunkCenter, sc.trunkHeight, sc.trunkW, sc.trunkH);
+    sc.bark2 = cts.createBark2(sc.trunkCenter, sc.trunkHeight, sc.trunkW, sc.trunkH);
+    sc.bark3 = cts.createBark3(sc.trunkCenter, sc.trunkHeight, sc.trunkW, sc.trunkH);
 
-        sc.snowParticles.push_back(snowBall);
-    }
+    //------------------------- GIFT -----------------------------//
 
-    //------------------------- BAUBLE MODELS -----------------------------//
+    sc.gift1 = dec.gift(230, 589, Color(125, 125, 125));
+    sc.gift2 = dec.gift(300, 592, Color(181, 2, 2));
+    sc.gift3 = dec.gift(450, 590, Color(0, 122, 0));
+    sc.gift4 = dec.gift(520, 594, Color(25, 125, 125));
+
+    //------------------------- CHRISTMAS TREE -----------------------------//
+
+    sc.christmasTree = cts.createTree(sc.trunkCenter, sc.trunkHeight, &sc.treeTip);
+    sc.christmasTreeStar = cts.createStar(sc.trunkCenter, sc.treeTip);
+
+    //------------------------- BAUBLE -----------------------------//
 
     sc.bauble1 = dec.createBauble(400, 300);
     sc.bauble2 = dec.createBauble(350, 340);
@@ -83,9 +121,6 @@ Scene createScene(int sWidth, int sHeight)
     sc.bauble10 = dec.createBauble(400, 500);
     sc.bauble11 = dec.createBauble(250, 510);
 
-    sc.stars1 = ss.createStars1(sc.numOfStars);
-    sc.stars2 = ss.createStars2(sc.numOfStars);
-
     return sc;
 };
 
@@ -98,17 +133,6 @@ void drawScene(RenderWindow& win, Scene &scene)
         win.draw(scene.snowParticles.at(i));
     }
 
-    Color color1(181, 2, 2);
-    Color color2(0, 122, 0);
-    Color color3(125, 125, 125);
-
-    ChristmasTreeStruct cts;
-    Decorations dec;
-
-    std::vector<RectangleShape> gift1 = dec.gift(300, 590, color1);
-    std::vector<RectangleShape> gift2 = dec.gift(450, 590, color2);
-    std::vector<RectangleShape> gift3 = dec.gift(520, 590, color3);
-
     for (int i = 0; i < scene.numOfStars; i++)
     {
         win.draw(scene.stars1.at(i));
@@ -118,20 +142,21 @@ void drawScene(RenderWindow& win, Scene &scene)
     win.draw(scene.ground);
     win.draw(scene.snow);
 
-    win.draw(cts.createTrunk(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
-    win.draw(cts.createBark1(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
-    win.draw(cts.createBark2(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
-    win.draw(cts.createBark3(scene.trunkCenter, scene.trunkHeight, scene.trunkW, scene.trunkH));
+    win.draw(scene.trunk);
+    win.draw(scene.bark1);
+    win.draw(scene.bark2);
+    win.draw(scene.bark3);
 
     for (size_t i = 0; i < 3; i++)
     {
-        win.draw(gift1.at(i));
-        win.draw(gift2.at(i));
-        win.draw(gift3.at(i));
+        win.draw(scene.gift1.at(i));
+        win.draw(scene.gift2.at(i));
+        win.draw(scene.gift3.at(i));
+        win.draw(scene.gift4.at(i));
     }
 
-    win.draw(cts.createTree(scene.trunkCenter, scene.trunkHeight, &scene.treeTip));
-    win.draw(cts.createStar(scene.trunkCenter, scene.treeTip));
+    win.draw(scene.christmasTree);
+    win.draw(scene.christmasTreeStar);
 
     win.draw(scene.bauble1);
     win.draw(scene.bauble2);
