@@ -14,4 +14,4 @@ Simple Christmas Tree animation project made for my University.
 
 ## Status
 
-In production.
+Finished.
