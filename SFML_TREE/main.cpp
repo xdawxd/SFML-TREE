@@ -4,7 +4,7 @@
 int main()
 {
     RenderWindow window(VideoMode(800, 600), "Merry Christmas!");
-    window.setFramerateLimit(1);
+    window.setFramerateLimit(60);
 
     srand(time(NULL));
 
@@ -18,6 +18,8 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
+
+        updateScene(sc);
 
         window.clear();
 
