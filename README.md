@@ -10,7 +10,7 @@ SFML
 
 ## General Info
 
-Simple Christmas Tree animation project made for my University.
+Simple Christmas Tree animation project made with structures for my University.
 
 ## Status
 
