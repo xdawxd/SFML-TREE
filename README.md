@@ -1,6 +1,6 @@
 # SFML_TREE
 
-### Technologies
+## Technologies
 
 ```bash
 Visual Studio
